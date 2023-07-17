@@ -5,7 +5,7 @@ import numpy as np
 import torch
 import time
 
-
+import ultralytics
 from ultralytics.yolo.utils import ROOT, yaml_load
 from ultralytics.yolo.utils.checks import check_requirements, check_yaml
 
