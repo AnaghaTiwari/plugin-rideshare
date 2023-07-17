@@ -8,8 +8,8 @@ RUN pip3 install --no-cache-dir -r /app/requirements.txt
 COPY app.py /app/
 COPY utils/ /app/utils
 
-ADD https://web.lcrc.anl.gov/public/waggle/public_html/models/rideshare/best_s1.pt /app/best_s1.pt
-ADD https://web.lcrc.anl.gov/public/waggle/public_html/models/rideshare/best_s2.pt /app/best_s2.pt
+ADD https://web.lcrc.anl.gov/public/waggle/models/rideshare/best_s1.pt /app/best_s1.pt
+ADD https://web.lcrc.anl.gov/public/waggle/models/rideshare/best_s2.pt /app/best_s2.pt
 
 # Finally, we specify the "main" thing that should be run.
 WORKDIR /app
