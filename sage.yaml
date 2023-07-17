@@ -1,0 +1,11 @@
+name: "numpy-example"
+description: "Numpy example which computes some stats of a test frame."
+version: "0.3.0"
+authors: "Sean Shahkarami <sshahkarami@anl.gov>"
+keywords: "example, tutorial, numpy, hackathon"
+source:
+  architectures:
+    - "linux/amd64"
+    - "linux/arm64"
+  url: "https://github.com/waggle-sensor/plugin-numpy-example"
+  branch: "main"
