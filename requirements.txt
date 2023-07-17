@@ -1,5 +1,2 @@
 # Required Waggle Python modules
-pywaggle[vision]==0.52.*
-
-# Custom Python modules. Please add your requirements below.
-numpy
+pywaggle[all]==0.55.*
