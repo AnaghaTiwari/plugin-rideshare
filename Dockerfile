@@ -5,7 +5,7 @@ COPY requirements.txt /app/
 RUN pip3 install --no-cache-dir -r /app/requirements.txt
 
 # Next, we include our code and specify what command should be run to execute it.
-COPY appv2.py /app/
+COPY app.py /app/
 COPY utils/ /app/utils
 
 ADD https://web.lcrc.anl.gov/public/waggle/models/rideshare/best_s1.pt /app/best_s1.pt
