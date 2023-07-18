@@ -1,3 +1,2 @@
-ultralytics
 # Required Waggle Python modules
 pywaggle[all]==0.55.*
