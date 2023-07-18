@@ -2,8 +2,10 @@
 # your code, the base image and any additional dependencies you need.
 FROM waggle/plugin-base:1.1.1-ml
 COPY requirements.txt /app/
-RUN apt-get install ultralytics
 RUN pip3 install -r https://raw.githubusercontent.com/ultralytics/ultralytics/main/requirements.txt
+
+RUN apt-get install ultralytics
+RUN pip3 install ultralytics
 RUN pip3 install --no-cache-dir -r /app/requirements.txt
 RUN pip3 install --upgrade pip
 
