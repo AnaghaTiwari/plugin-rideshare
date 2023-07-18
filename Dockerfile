@@ -3,6 +3,7 @@
 FROM waggle/plugin-base:1.1.1-ml
 COPY requirements.txt /app/
 RUN pip install ultralytics
+RUN apt-get install ultralytics
 RUN pip3 install --no-cache-dir -r /app/requirements.txt
 
 
