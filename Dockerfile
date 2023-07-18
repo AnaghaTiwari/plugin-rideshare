@@ -5,13 +5,13 @@ FROM waggle/plugin-base:1.1.1-ml
 # RUN python -m pip3 install --upgrade pip
 # RUN pip3 install --upgrade setuptools pip
 
+COPY requirements.txt /app/
 RUN pip3 install --no-cache-dir -r /app/requirements.txt
 RUN python3 -m pip install --upgrade pip --no-cache-dir
 RUN pip3 install --upgrade pip
 
 RUN pip3 install ultralytics --no-cache-dir
 
-COPY requirements.txt /app/
 
 # Next, we include our code and specify what command should be run to execute it.
 COPY app.py /app/
