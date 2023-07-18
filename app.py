@@ -6,6 +6,7 @@ import torch
 import time
 
 import ultralytics
+from ultralytics.models import yolo
 from ultralytics import ultralytics.yolo.ultils
 from ultralytics import ultralytics.yolo.utils.checks
 from ultralytics.yolo.utils import ROOT, yaml_load
