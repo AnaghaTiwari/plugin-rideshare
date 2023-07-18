@@ -12,6 +12,9 @@ RUN pip3 install --upgrade pip
 
 # RUN pip3 install ultralytics --no-cache-dir
 RUN git clone https://github.com/ultralytics/ultralytics.git
+WORKDIR ultralytics
+RUN pip .
+
 
 # Next, we include our code and specify what command should be run to execute it.
 COPY app.py /app/
