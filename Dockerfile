@@ -3,9 +3,15 @@
 FROM waggle/plugin-base:1.1.1-ml
 COPY requirements.txt /app/
 # RUN python -m pip3 install --upgrade pip
-RUN pip3 install --upgrade setuptools pip
+# RUN pip3 install --upgrade setuptools pip
 
-RUN pip3 install ultralytics
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y  \
+        libgl1-mesa-glx libglib2.0-0 python3 python3-pip \
+    && pip3 install ultralytics \
+    && rm -rf /var/lib/apt/lists/*
+
+
 RUN pip3 install --no-cache-dir -r /app/requirements.txt
 RUN pip3 install --upgrade pip
 
