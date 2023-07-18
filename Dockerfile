@@ -1,7 +1,7 @@
 # A Dockerfile is used to define how your code will be packaged. This includes
 # your code, the base image and any additional dependencies you need.
 FROM waggle/plugin-base:1.1.1-ml
-COPY requirements.txt /app/
+# COPY requirements.txt /app/
 # RUN python -m pip3 install --upgrade pip
 # RUN pip3 install --upgrade setuptools pip
 
@@ -12,6 +12,8 @@ RUN pip3 install --upgrade pip
 RUN pip3 uninstall ultralytics
 RUN pip3 install ultralytics
 RUN pip3 install --upgrade ultralytics
+
+COPY requirements.txt /app/
 
 # Next, we include our code and specify what command should be run to execute it.
 COPY app.py /app/
