@@ -2,8 +2,8 @@
 # your code, the base image and any additional dependencies you need.
 FROM waggle/plugin-base:1.1.1-ml
 COPY requirements.txt /app/
+RUN pip install ultralytics
 RUN pip3 install --no-cache-dir -r /app/requirements.txt
-RUN pip3 install ultralytics
 
 
 # Next, we include our code and specify what command should be run to execute it.
