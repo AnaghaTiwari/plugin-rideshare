@@ -88,7 +88,7 @@ class Yolov8:
         """
         # Read the input image from frame using OpenCV
         # self.img = cv2.imread(self.stream)
-        self.img = cv2.imread(sample)
+        self.img = sample.data
         
         # Get the height and width of the input image
         img = cv2.resize(self.img, (640, 640))
