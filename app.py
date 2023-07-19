@@ -261,7 +261,7 @@ if __name__ == '__main__':
     while True:
         with Plugin() as plugin:
             # with Camera(args.stream) as camera:
-            with Camera() as camera:
+            with Camera(args.stream) as camera:
                 sample = camera.snapshot()
 
             # Perform object detection - return output
