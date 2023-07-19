@@ -14,6 +14,7 @@ RUN pip install --upgrade pip
 
 # RUN pip3 install ultralytics --no-cache-dir
 RUN pip install ultralytics
+RUN pip install opencv-python
 
 # Next, we include our code and specify what command should be run to execute it.
 COPY app.py /app/
