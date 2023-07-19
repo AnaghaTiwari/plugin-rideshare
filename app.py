@@ -213,8 +213,8 @@ class Yolov8:
 
         # Store the shape of the input for later use
         input_shape = model_inputs[0].shape
-        self.input_width = input_shape[2]
-        self.input_height = input_shape[3]
+        self.input_width = 640   #input_shape[2]
+        self.input_height = 640 #input_shape[3]
 
         # Preprocess the image data
         img_data = self.preprocess()
