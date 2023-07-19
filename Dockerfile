@@ -16,6 +16,7 @@ RUN pip install --upgrade pip
 RUN pip install ultralytics
 RUN pip install opencv-python-headless
 RUN pip install opencv-contrib-python-headless
+RUN pip install py-cpuinfo
 
 # Next, we include our code and specify what command should be run to execute it.
 COPY app.py /app/
