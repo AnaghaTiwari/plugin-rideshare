@@ -87,7 +87,7 @@ class Yolov8:
             image_data: Preprocessed image data ready for inference.
         """
         # Read the input image from frame using OpenCV
-        self.img = cv2.imread(self.input_vid)
+        self.img = cv2.imread(self.stream)
 
         # Get the height and width of the input image
         self.img_height, self.img_width = self.img.shape[:2]
