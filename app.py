@@ -172,17 +172,18 @@ class Yolov8:
 
         # Apply non-maximum suppression to filter out overlapping bounding boxes
         indices = cv2.dnn.NMSBoxes(boxes, scores, self.confidence_thres, self.iou_thres)
-
+        
         detection_stats = 'found objects: '
         found = {}
         # Iterate over the selected indices after non-maximum suppression
+        input_image = sample.data
         for i in indices:
             # Get the box, score, and class ID corresponding to the index
             box = boxes[i]
             score = scores[i]
             class_id = class_ids[i]
-
-            # Draw the detection on the input image, and save to plugin using cv2
+            
+            # Draw the detection on the input frame, and save to plugin using cv2
             self.draw_detections(input_image, box, score, class_id)
             cv2.imwrite('yolov8.jpg', input_image)
             plugin.upload_file('yolov8.jpg')
