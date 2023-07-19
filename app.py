@@ -221,7 +221,7 @@ class Yolov8:
         self.input_height = 640 #input_shape[3]
 
         # Preprocess the image data
-        img_data = self.preprocess()
+        img_data = self.preprocess(sample)
 
         # Run inference using the preprocessed image data
         outputs = session.run(None, {model_inputs[0].name: img_data})
