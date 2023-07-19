@@ -230,7 +230,8 @@ class Yolov8:
             outputs = self.model.predict(model_inputs)[0]
             
         # Perform post-processing on the outputs to obtain output image.
-        output_img = self.postprocess(self.img, outputs)
+        # output_img = self.postprocess(self.img, outputs)
+        output_img = self.postprocess(sample, plugin, args, outputs)
 
         # Return the resulting output image
         return output_img
