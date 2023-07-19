@@ -90,7 +90,10 @@ class Yolov8:
         self.img = cv2.imread(self.stream)
 
         # Get the height and width of the input image
-        self.img_height, self.img_width = self.img.shape[:2]
+        img = cv2.resize(self.img, (640, 640))
+        self.img_height = 640
+        self.img_width = 640
+        #self.img.shape[:2]
 
         # Convert the image color space from BGR to RGB
         img = cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB)
