@@ -14,7 +14,8 @@ RUN pip install --upgrade pip
 
 # RUN pip3 install ultralytics --no-cache-dir
 RUN pip install ultralytics
-RUN pip install opencv-python
+RUN pip install opencv-python-headless
+RUN pip install opencv-contrib-python-headless
 
 # Next, we include our code and specify what command should be run to execute it.
 COPY app.py /app/
