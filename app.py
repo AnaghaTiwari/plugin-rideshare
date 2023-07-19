@@ -213,7 +213,9 @@ class Yolov8:
         """
         
         # Get the model inputs
-        model_inputs = sample.data
+        ####################
+        # model_inputs = sample.data
+        model_inputs = cv2.imread(sample)
 
         # Store the shape of the input for later use
         input_shape = model_inputs[0].shape
@@ -271,7 +273,9 @@ if __name__ == '__main__':
         with Plugin() as plugin:
             # with Camera(args.stream) as camera:
             with Camera(args.stream) as camera:
-                sample = camera.snapshot()
+                #########
+                # sample = camera.snapshot()
+                sample = test.jpg
 
             # Perform object detection - return output
 
