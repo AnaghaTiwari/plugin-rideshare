@@ -134,9 +134,6 @@ class Yolov8:
         outputs = np.transpose(np.squeeze(output[0]))
         rows = outputs.shape[0]
             
-        # Get the number of rows in the outputs array
-        # rows = outputs.shape[0]
-
         # Lists to store the bounding boxes, scores, and class IDs of the detections
         boxes = []
         scores = []
