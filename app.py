@@ -130,12 +130,9 @@ class Yolov8:
         timestamp = sample.timestamp
 
         # Transpose and squeeze the output to match the expected shape
-        if (output.size == 0):
-            print("NO Rideshare Vehicles FOUND")
-            rows = 0
-        else:
-            outputs = np.transpose(np.squeeze(output[0]))
-            rows = outputs.shape[0]
+        
+        outputs = np.transpose(np.squeeze(output[0]))
+        rows = outputs.shape[0]
             
         # Get the number of rows in the outputs array
         # rows = outputs.shape[0]
