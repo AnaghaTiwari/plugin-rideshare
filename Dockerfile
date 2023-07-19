@@ -28,7 +28,7 @@ ADD https://web.lcrc.anl.gov/public/waggle/models/rideshare/best_s1.pt /app/yolo
 ADD https://web.lcrc.anl.gov/public/waggle/models/rideshare/best_s2.pt /app/best_s2.pt
 
 ## TESTING image
-ADD test.jpg /app/test.jpg
+ADD https://github.com/AnaghaTiwari/plugin-rideshare/blob/main/test.jpg /app/test.jpg
 
 # Finally, we specify the "main" thing that should be run.
 WORKDIR /app
