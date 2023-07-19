@@ -224,8 +224,11 @@ class Yolov8:
         img_data = self.preprocess(sample)
 
         # Run inference using the preprocessed image data
-        outputs = session.run(None, {model_inputs[0].name: img_data})
+        # outputs = session.run(None, {model_inputs[0].name: img_data})
 
+        with torch.no_grad():
+            outputs = self.model(model_inputs)[0]
+            
         # Perform post-processing on the outputs to obtain output image.
         output_img = self.postprocess(self.img, outputs)
 
