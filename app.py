@@ -227,7 +227,7 @@ class Yolov8:
         # outputs = session.run(None, {model_inputs[0].name: img_data})
 
         with torch.no_grad():
-            outputs = self.model(model_inputs)[0]
+            outputs = self.model.predict(model_inputs)[0]
             
         # Perform post-processing on the outputs to obtain output image.
         output_img = self.postprocess(self.img, outputs)
