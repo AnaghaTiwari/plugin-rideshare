@@ -232,7 +232,7 @@ class Yolov8:
 if __name__ == '__main__':
     # Create an argument parser to handle command-line arguments
     parser = argparse.ArgumentParser(description = "Evaluate YoloV8 model")
-    parser.add_argument('--model', type=str, default='yolov8n.pt', help='Input YoloV8 model.')
+    parser.add_argument('--model', type=str, default='yolov8.pt', help='Input YoloV8 model.')
     parser.add_argument('-stream', type=str, action='store', default=str('bottom'), help='ID of stream')
     parser.add_argument('--conf-thres', type=float, default=0.5, help='Confidence threshold')
     parser.add_argument('--iou-thres', type=float, default=0.5, help='IoU threshold')
