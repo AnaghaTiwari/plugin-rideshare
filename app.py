@@ -79,7 +79,7 @@ class Yolov8:
         # Draw the label text on the image
         cv2.putText(img, label, (label_x, label_y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
 
-    def preprocess(self):
+    def preprocess(self, sample):
         """
         Preprocesses the input image before performing inference.
 
@@ -87,8 +87,9 @@ class Yolov8:
             image_data: Preprocessed image data ready for inference.
         """
         # Read the input image from frame using OpenCV
-        self.img = cv2.imread(self.stream)
-
+        # self.img = cv2.imread(self.stream)
+        self.img = cv2.imread(sample)
+        
         # Get the height and width of the input image
         img = cv2.resize(self.img, (640, 640))
         self.img_height = 640
