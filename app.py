@@ -232,7 +232,7 @@ class Yolov8:
             # plugin.publish(f'{class_id}', count, timestamp = timestamp)
             # plugin.publish(f'{i}', count, timestamp)
             # plugin.publish(f'{TOPIC_TEMPLATE}.{str(i)}', str(count), str(timestamp))
-            plugin.publish("rideshare log: ", i, count, timestamp=timestamp)
+            plugin.publish("rideshare log ", i, count, timestamp=timestamp)
         print(detection_stats)
             
 
