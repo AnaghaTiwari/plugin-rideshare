@@ -181,7 +181,7 @@ class Yolov8:
         # Apply non-maximum suppression to filter out overlapping bounding boxes
         # indices = cv2.dnn.NMSBoxes(boxes, scores, self.confidence_thres, self.iou_thres)
         
-        detection_stats = 'found objects: '
+        detection_stats = 'found: '
         found = {}
         # Iterate over the selected indices after non-maximum suppression
 
@@ -227,10 +227,11 @@ class Yolov8:
         # for name, count in found.items():
         for i in name:
             # detection_stats += f'{class_id}[{count}] '
-            detection_stats += f'{i}[{name}]'
+            detection_stats += f'{i}, {count}'
             # plugin.publish(f'{class_id}', count, timestamp = timestamp)
             # plugin.publish(f'{i}', count, timestamp)
             # plugin.publish(f'{TOPIC_TEMPLATE}.{str(i)}', str(count), str(timestamp))
+            
             plugin.publish('rideshare.log', str(count), timestamp=timestamp)
             
         print(detection_stats)
