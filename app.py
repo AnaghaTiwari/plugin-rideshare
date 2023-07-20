@@ -281,7 +281,7 @@ if __name__ == '__main__':
             with Camera(args.stream) as camera:
                 #########
                 # sample = camera.snapshot()
-                sample = 'test.jpg'
+                sample = 'test.jpeg'
 
             # Perform object detection - return output
 
