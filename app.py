@@ -215,7 +215,7 @@ class Yolov8:
         # Get the model inputs
         ####################
         # model_inputs = sample.data
-        model_inputs = cv2.imread(sample, CV_LOAD_IMAGE_COLOR)
+        model_inputs = cv2.imread(sample)
         print(type(model_inputs))
         # Store the shape of the input for later use
         ####################
