@@ -211,7 +211,7 @@ class Yolov8:
         #     else:
         #         found[class_id] += 1
         count = 0
-        for result in ouput:
+        for result in output:
             res_plotted = result.plot()
             cv2.imwrite('result.jpeg', res_plotted)
             plugin.upload_file('result.jpg')
