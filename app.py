@@ -136,9 +136,10 @@ class Yolov8:
         timestamp = 'July19,7:31'
 
         # Transpose and squeeze the output to match the expected shape
-        
-        outputs = np.transpose(np.squeeze(output[0]))
-        rows = outputs.shape[0]
+
+        ######################################
+        # outputs = np.transpose(np.squeeze(output[0]))
+        # rows = outputs.shape[0]
             
         # Lists to store the bounding boxes, scores, and class IDs of the detections
         boxes = []
@@ -149,61 +150,85 @@ class Yolov8:
         x_factor = self.img_width / self.input_width
         y_factor = self.img_height / self.input_height
 
-        # Iterate over each row in the outputs array
-        for i in range(rows):
-            # Extract the class scores from the current row
-            classes_scores = outputs[i][4:]
+        # Iterate over each output in the outputs array
+        ################ NOT NEEDD #########
+        
+        # for i in ouput:
+        #     # Extract the class scores from the current row
+        #     classes_scores = outputs[i][4:]
 
-            # Find the maximum score among the class scores
-            max_score = np.amax(classes_scores)
+        #     # Find the maximum score among the class scores
+        #     max_score = np.amax(classes_scores)
 
-            # If the maximum score is above the confidence threshold
-            if max_score >= self.confidence_thres:
-                # Get the class ID with the highest score
-                class_id = np.argmax(classes_scores)
+        #     # If the maximum score is above the confidence threshold
+        #     if max_score >= self.confidence_thres:
+        #         # Get the class ID with the highest score
+        #         class_id = np.argmax(classes_scores)
 
-                # Extract the bounding box coordinates from the current row
-                x, y, w, h = outputs[i][0], outputs[i][1], outputs[i][2], outputs[i][3]
+        #         # Extract the bounding box coordinates from the current row
+        #         x, y, w, h = outputs[i][0], outputs[i][1], outputs[i][2], outputs[i][3]
 
-                # Calculate the scaled coordinates of the bounding box
-                left = int((x - w / 2) * x_factor)
-                top = int((y - h / 2) * y_factor)
-                width = int(w * x_factor)
-                height = int(h * y_factor)
+        #         # Calculate the scaled coordinates of the bounding box
+        #         left = int((x - w / 2) * x_factor)
+        #         top = int((y - h / 2) * y_factor)
+        #         width = int(w * x_factor)
+        #         height = int(h * y_factor)
 
-                # Add the class ID, score, and box coordinates to the respective lists
-                class_ids.append(class_id)
-                scores.append(max_score)
-                boxes.append([left, top, width, height])
+        #         # Add the class ID, score, and box coordinates to the respective lists
+        #         class_ids.append(class_id)
+        #         scores.append(max_score)
+        #         boxes.append([left, top, width, height])
 
         # Apply non-maximum suppression to filter out overlapping bounding boxes
-        indices = cv2.dnn.NMSBoxes(boxes, scores, self.confidence_thres, self.iou_thres)
+        # indices = cv2.dnn.NMSBoxes(boxes, scores, self.confidence_thres, self.iou_thres)
         
         detection_stats = 'found objects: '
         found = {}
         # Iterate over the selected indices after non-maximum suppression
-        input_image = sample.data
-        for i in indices:
-            # Get the box, score, and class ID corresponding to the index
-            box = boxes[i]
-            score = scores[i]
-            class_id = class_ids[i]
-            
-            # Draw the detection on the input frame, and save to plugin using cv2
-            self.draw_detections(input_image, box, score, class_id)
-            cv2.imwrite('yolov8.jpg', input_image)
-            plugin.upload_file('yolov8.jpg')
-            print('image saved')
 
-            if not class_id in found:
-                found[class_id] = 1
-            else:
-                found[class_id] += 1
+
+
+        ###############################
+        # input_image = sample.data
+        input_image = cv2.imread(sample)        
+        
+
+        ############# NOT NEEDED ##############
+        # for i in indices:
+        #     # Get the box, score, and class ID corresponding to the index
+        #     box = boxes[i]
+        #     score = scores[i]
+        #     class_id = class_ids[i]
+            
+        #     # Draw the detection on the input frame, and save to plugin using cv2
+        #     self.draw_detections(input_image, box, score, class_id)
+        #     cv2.imwrite('yolov8.jpg', input_image)
+        #     plugin.upload_file('yolov8.jpg')
+        #     print('image saved')
+
+        #     if not class_id in found:
+        #         found[class_id] = 1
+        #     else:
+        #         found[class_id] += 1
+        count = 0
+        for result in ouput:
+            res_plotted = result.plot()
+            cv2.imwrite('result.jpeg', res_plotted)
+            plugin.upload_file('result.jpg')
+
+            boxes = result.boxes.cpu().numpy()                         # get boxes on cpu in numpy
+            for box in boxes:                                          # iterate boxes
+                name.append(result.names[int(box.cls[0])])
+                count += 1
+                
             
         # print detection stats
-        for name, count in found.items():
-            detection_stats += f'{class_id}[{count}] '
-            plugin.publish(f'{class_id}', count, timestamp = timestamp)
+        # for name, count in found.items():
+        for i in name:
+            # detection_stats += f'{class_id}[{count}] '
+            detection_stats += f'{i}[{name}]'
+            # plugin.publish(f'{class_id}', count, timestamp = timestamp)
+            plugin.publish(f'{i}', count, timestamp = timestamp)
         print(detection_stats)
             
 
