@@ -281,7 +281,7 @@ if __name__ == '__main__':
             with Camera(args.stream) as camera:
                 #########
                 # sample = camera.snapshot()
-                sample = 'https://github.com/AnaghaTiwari/plugin-rideshare/blob/13e1fe5064748e5a09b6f93b9dd7e2b3e85062f1/test.jpg'
+                sample = 'test.jpg'
 
             # Perform object detection - return output
 
