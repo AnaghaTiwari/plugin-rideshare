@@ -229,7 +229,7 @@ class Yolov8:
             # detection_stats += f'{class_id}[{count}] '
             detection_stats += f'{i}[{name}]'
             # plugin.publish(f'{class_id}', count, timestamp = timestamp)
-            plugin.publish(f'{i}', count, {timestamp})
+            plugin.publish(f'{i}', count, timestamp)
         print(detection_stats)
             
 
