@@ -216,14 +216,17 @@ class Yolov8:
         ####################
         # model_inputs = sample.data
         model_inputs = cv2.imread(sample)
-
+        print(type(model_inputs))
         # Store the shape of the input for later use
         ####################
         # input_shape = model_inputs[0].shape
+        # self.input_width = 640   #input_shape[2]
+        # self.input_height = 640 #input_shape[3]
         
-        input_shape = model_inputs.shape
-        self.input_width = 640   #input_shape[2]
-        self.input_height = 640 #input_shape[3]
+        # input_shape = model_inputs.shape
+        self.input_width = model_inputs.shape[0]
+        self.input_height = model_inputs.shape[1]
+        
 
         # Preprocess the image data
         img_data = self.preprocess(sample)
