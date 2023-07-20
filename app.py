@@ -131,7 +131,9 @@ class Yolov8:
             numpy.ndarray: The input image with detections drawn on it.
         """
 
-        timestamp = sample.timestamp
+        #####################
+        # timestamp = sample.timestamp
+        timestamp = 'July19,7:31'
 
         # Transpose and squeeze the output to match the expected shape
         
