@@ -224,12 +224,14 @@ class Yolov8:
                 
             
         # print detection stats
+        TOPIC_TEMPLATE = 'env.count'
         # for name, count in found.items():
         for i in name:
             # detection_stats += f'{class_id}[{count}] '
             detection_stats += f'{i}[{name}]'
             # plugin.publish(f'{class_id}', count, timestamp = timestamp)
-            plugin.publish(f'{i}', count, timestamp)
+            # plugin.publish(f'{i}', count, timestamp)
+            plugin.publish(f'{TOPIC_TEMPLATE}.{i}', count, timestamp)
         print(detection_stats)
             
 
