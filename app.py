@@ -133,7 +133,7 @@ class Yolov8:
 
         #####################
         # timestamp = sample.timestamp
-        timestamp = 'July19,7:31'
+        timestamp = '2022-08-23T13:38:04.619466000'
 
         # Transpose and squeeze the output to match the expected shape
 
