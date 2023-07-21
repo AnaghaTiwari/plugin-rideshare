@@ -229,7 +229,7 @@ class Yolov8:
                 crop = input_image[r[1]:r[3], r[0]:r[2]]
                 cv2.imwrite("crop.jpeg", crop)
                 detection2 = Yolov8(args.model2, args.stream, 0.4, args.iou_thres)
-                output = detection2.main(crop, 2)
+                output = detection2.main('crop.jpeg', 2)
                 
                 # plugin.upload_file("crop.jpeg")
             
