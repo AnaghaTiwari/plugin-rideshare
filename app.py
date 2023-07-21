@@ -465,7 +465,7 @@ if __name__ == '__main__':
     # Create an instance of the Yolov8 class with the specified arguments
     detection = Yolov8(args.model, args.stream, args.conf_thres, args.iou_thres)
     
-    detection2 = Yolov8(args.model2, args.stream, 0.4, args.iou_thres)
+    # detection2 = Yolov8(args.model2, args.stream, 0.4, args.iou_thres)
 
     # take sample from plugin camera
     while True:
@@ -480,7 +480,7 @@ if __name__ == '__main__':
             crop = detection.main(sample, 1)
 
             # Perform object detection - return for stage 2
-            output = detection2.main(crop, 2)
+            # output = detection2.main(crop, 2)
             
             if not args.continuous:
                 exit(0)
