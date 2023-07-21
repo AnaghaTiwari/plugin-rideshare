@@ -225,7 +225,7 @@ class Yolov8:
             boxes = result.boxes.cpu().numpy()
             for i, box in enumerate(boxes):
                 r = box.xyxy[0].astype(int)
-                crop = img[r[1]:r[3], r[0]:r[2]]
+                crop = input_image[r[1]:r[3], r[0]:r[2]]
                 cv2.imwrite("crop.jpeg", crop)
                 plugin.upload_file("crop.jpeg")
             
