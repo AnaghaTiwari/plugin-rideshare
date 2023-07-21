@@ -118,7 +118,8 @@ class Yolov8:
         # Return the preprocessed image data
         return image_data
 
-    def postprocess(self, sample, plugin, args, output):
+    # postprocess => read in sticker, publish detection for s1
+    def postprocess_1(self, sample, plugin, args, output):
         """
         Performs post-processing on the model's output to extract bounding boxes, scores, and class IDs.
 
@@ -214,7 +215,7 @@ class Yolov8:
         for result in output:
             res_plotted = result.plot()
             cv2.imwrite('result.jpeg', res_plotted)
-            plugin.upload_file('result.jpeg')
+            # plugin.upload_file('result.jpeg')
 
             boxes = result.boxes.cpu().numpy()                         # get boxes on cpu in numpy
             for box in boxes:                                          # iterate boxes
@@ -227,7 +228,10 @@ class Yolov8:
                 r = box.xyxy[0].astype(int)
                 crop = input_image[r[1]:r[3], r[0]:r[2]]
                 cv2.imwrite("crop.jpeg", crop)
-                plugin.upload_file("crop.jpeg")
+                detection2 = Yolov8(args.model2, args.stream, 0.4, args.iou_thres)
+                output = detection2.main(crop, 2)
+                
+                # plugin.upload_file("crop.jpeg")
             
         # print detection stats
         TOPIC_TEMPLATE = 'rideshare'
@@ -239,9 +243,9 @@ class Yolov8:
             # plugin.publish(f'{i}', count, timestamp)
             # plugin.publish(f'{TOPIC_TEMPLATE}.{str(i)}', str(count), str(timestamp))
             
-            plugin.publish('rideshare.log', str(count), timestamp=timestamp)
+            # plugin.publish('rideshare.log', str(count), timestamp=timestamp)
             
-        print(detection_stats)
+        # print(detection_stats)
             
 
         # Return the modified input image
@@ -250,7 +254,7 @@ class Yolov8:
 
 
     # postprocess_s2 - specifically for not publishing crop sticker
-    def postprocess(self, sample, plugin, args, output):
+    def postprocess_2(self, sample, plugin, args, output):
         """
         Performs post-processing on the model's output to extract bounding boxes, scores, and class IDs.
 
@@ -343,6 +347,7 @@ class Yolov8:
         #         found[class_id] += 1
         count = 0
         name = []
+        bool_found = False
         for result in output:
             res_plotted = result.plot()
             cv2.imwrite('result.jpeg', res_plotted)
@@ -352,7 +357,11 @@ class Yolov8:
             for box in boxes:                                          # iterate boxes
                 name.append(result.names[int(box.cls[0])])
                 count += 1
-
+                bool_found = True
+                
+        # crop to return
+        crop = input_image
+        
         for result in output:
             boxes = result.boxes.cpu().numpy()
             for i, box in enumerate(boxes):
@@ -377,8 +386,10 @@ class Yolov8:
             
 
         # Return the modified input image
-        
-        return input_image
+        if bool_found:
+            return crop
+        else:
+            return input_image
 
     def main(self, sample, stage):
         """
@@ -417,9 +428,9 @@ class Yolov8:
         # output_img = self.postprocess(self.img, outputs)
         # Check for stage (if 2, then final so don't publish anything)
         if (stage == 2):
-            output_img = self.postprocess_s2(sample, plugin, args, outputs) 
+            output_img = self.postprocess_2(sample, plugin, args, outputs) 
         else:
-            output_img = self.postprocess(sample, plugin, args, outputs)
+            output_img = self.postprocess_1(sample, plugin, args, outputs)
 
         # Return the resulting output image
         return output_img
