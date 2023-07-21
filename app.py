@@ -220,7 +220,14 @@ class Yolov8:
             for box in boxes:                                          # iterate boxes
                 name.append(result.names[int(box.cls[0])])
                 count += 1
-                
+
+        for result in output:
+            boxes = result.boxes.cpu().numpy()
+            for i, box in enumerate(boxes):
+                r = box.xyxy[0].astype(int)
+                crop = img[r[1]:r[3], r[0]:r[2]]
+                cv2.imwrite("crop.jpeg", crop)
+                plugin.upload_file("crop.jpeg")
             
         # print detection stats
         TOPIC_TEMPLATE = 'rideshare'
