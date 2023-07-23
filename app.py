@@ -351,7 +351,7 @@ class Yolov8:
         for result in output:
             res_plotted = result.plot()
             cv2.imwrite('result.jpeg', res_plotted)
-            plugin.upload_file('result.jpeg')
+            # plugin.upload_file('result.jpeg')
 
             boxes = result.boxes.cpu().numpy()                         # get boxes on cpu in numpy
             for box in boxes:                                          # iterate boxes
