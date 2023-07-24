@@ -474,7 +474,7 @@ if __name__ == '__main__':
             with Camera(args.stream) as camera:
                 #########
                 # sample = camera.snapshot()
-                sample = 'test.jpeg'
+                sample = 'test2.jpeg'
 
             # Perform object detection - return crop - stage 1
             crop = detection.main(sample, 1)
