@@ -91,6 +91,7 @@ class Yolov8:
 
         ##########################
         # self.img = sample.data
+        self.img = sample
 
         # self.img = cv2.imread(sample)
         
