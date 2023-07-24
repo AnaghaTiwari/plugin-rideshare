@@ -1,3 +1,3 @@
-# Hello World - Numpy Plugin Example
+# Science
 
-This is a minimal plugin intended to help new Sage users start writing plugins.
+A semi-real-time rideshare vehicle tracking application based on a group of convolutional neural network models was utilized to detect rideshare vehicles in street intersections. Due to the small size and lighting conditions that make it challenging to detect rideshare stickers, we developed a two-stage system to 1) zoom in to possible stickers and 2) confirm the presence of rideshare stickers. We trained a YOLOv8 model to track possible rideshare vehicles. YOLOv8 is a recent SOTA object detection model based on deep convolutional neural networks, and has a much higher accuracy than previous YOLO models. We hope that this rideshare plugin can be one of the first rideshare detection algorithms, which will soon be installed in city Waggle nodes available for infrastructure and city officials, rideshare companies, and airport officials to use. 
