@@ -228,7 +228,7 @@ class Yolov8:
                 r = box.xyxy[0].astype(int)
                 crop = input_image[r[1]:r[3], r[0]:r[2]]
                 cv2.imwrite("crop.jpeg", crop)
-                detection2 = Yolov8(args.model2, args.stream, 0.4, args.iou_thres)
+                detection2 = Yolov8(args.model2, args.stream, 0.3, args.iou_thres)
                 output = detection2.main('crop.jpeg', 2)
                 
                 # plugin.upload_file("crop.jpeg")
@@ -443,7 +443,7 @@ if __name__ == '__main__':
     parser.add_argument('--model2', type=str, default='best_s2.pt', help='Input stage2 YoloV8 model.')
     parser.add_argument('-stream', type=str, action='store', default=str('bottom'), help='ID of stream')
     parser.add_argument('--conf-thres', type=float, default=0.2, help='Confidence threshold')
-    parser.add_argument('--iou-thres', type=float, default=0.5, help='IoU threshold')
+    parser.add_argument('--iou-thres', type=float, default=0.4, help='IoU threshold')
     parser.add_argument('-continuous', dest = 'continuous', action='store_true', default=False, help='Continuous run flag T/F')
     args = parser.parse_args()
 
