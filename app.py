@@ -90,7 +90,7 @@ class Yolov8:
         # self.img = cv2.imread(self.stream)
 
         ##########################
-        self.img = sample.data
+        # self.img = sample.data
 
         # self.img = cv2.imread(sample)
         
@@ -401,8 +401,11 @@ class Yolov8:
         
         # Get the model inputs
         ####################
-        model_inputs = sample.data
-        # model_inputs = cv2.imread(sample)
+        if stage==1:
+            model_inputs = sample.data
+        else:
+            model_inputs = cv2.imread(sample)
+            
         # Store the shape of the input for later use
         ####################
         # input_shape = model_inputs[0].shape
@@ -415,7 +418,7 @@ class Yolov8:
         
 
         # Preprocess the image data
-        img_data = self.preprocess(sample)
+        img_data = self.preprocess(model_inputs)
 
         # Run inference using the preprocessed image data
         # outputs = session.run(None, {model_inputs[0].name: img_data})
