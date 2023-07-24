@@ -90,9 +90,9 @@ class Yolov8:
         # self.img = cv2.imread(self.stream)
 
         ##########################
-        # self.img = sample.data
+        self.img = sample.data
 
-        self.img = cv2.imread(sample)
+        # self.img = cv2.imread(sample)
         
         # Get the height and width of the input image
         img = cv2.resize(self.img, (640, 640))
@@ -133,8 +133,8 @@ class Yolov8:
         """
 
         #####################
-        # timestamp = sample.timestamp
-        timestamp = 946706400000000000
+        timestamp = sample.timestamp
+        # timestamp = 946706400000000000
         # Transpose and squeeze the output to match the expected shape
 
         ######################################
@@ -189,8 +189,8 @@ class Yolov8:
 
 
         ###############################
-        # input_image = sample.data
-        input_image = cv2.imread(sample)        
+        input_image = sample.data
+        # input_image = cv2.imread(sample)        
         
 
         ############# NOT NEEDED ##############
@@ -268,8 +268,8 @@ class Yolov8:
         """
 
         #####################
-        # timestamp = sample.timestamp
-        timestamp = 946706400000000000
+        timestamp = sample.timestamp
+        # timestamp = 946706400000000000
         # Transpose and squeeze the output to match the expected shape
 
         ######################################
@@ -324,8 +324,8 @@ class Yolov8:
 
 
         ###############################
-        # input_image = sample.data
-        input_image = cv2.imread(sample)        
+        input_image = sample.data
+        # input_image = cv2.imread(sample)        
         
 
         ############# NOT NEEDED ##############
@@ -375,7 +375,7 @@ class Yolov8:
         # for name, count in found.items():
         for i in name:
             # detection_stats += f'{class_id}[{count}] '
-            detection_stats += f'{i}, {count}'
+            detection_stats += f'{i}, {count}, {timestamp}'
             # plugin.publish(f'{class_id}', count, timestamp = timestamp)
             # plugin.publish(f'{i}', count, timestamp)
             # plugin.publish(f'{TOPIC_TEMPLATE}.{str(i)}', str(count), str(timestamp))
@@ -401,8 +401,8 @@ class Yolov8:
         
         # Get the model inputs
         ####################
-        # model_inputs = sample.data
-        model_inputs = cv2.imread(sample)
+        model_inputs = sample.data
+        # model_inputs = cv2.imread(sample)
         # Store the shape of the input for later use
         ####################
         # input_shape = model_inputs[0].shape
@@ -457,10 +457,10 @@ if __name__ == '__main__':
 
     if torch.cuda.is_available():
         device = torch.device("cuda:0")
-        print("running on the GPU")
+        # print("running on the GPU")
     else:
         device = torch.device("cpu")
-        print("running on the CPU")
+        # print("running on the CPU")
 
     # Create an instance of the Yolov8 class with the specified arguments
     detection = Yolov8(args.model, args.stream, args.conf_thres, args.iou_thres)
@@ -473,8 +473,8 @@ if __name__ == '__main__':
             # with Camera(args.stream) as camera:
             with Camera(args.stream) as camera:
                 #########
-                # sample = camera.snapshot()
-                sample = 'test2.jpeg'
+                sample = camera.snapshot()
+                # sample = 'test2.jpeg'
 
             # Perform object detection - return crop - stage 1
             crop = detection.main(sample, 1)
