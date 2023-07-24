@@ -3,7 +3,7 @@ namespace: "anagha"
 description: "Rideshare Vehicle Detection"
 version: "0.1.0"
 authors: "Anagha Tiwari <tiwari@anl.gov>"
-keywords: "counter, rideshare, machine learning, computer vision, yolo"
+keywords: "image identification, rideshare, machine learning, computer vision, yolo"
 source:
   architectures:
     - "linux/amd64"
