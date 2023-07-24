@@ -1,5 +1,5 @@
-name: "rideshare"
-namespace: "waggle"
+name: "rideshare-detection"
+namespace: "anagha"
 description: "Rideshare Vehicle Detection"
 version: "0.1.0"
 authors: "Anagha Tiwari <tiwari@anl.gov>"
