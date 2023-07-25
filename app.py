@@ -192,8 +192,11 @@ class Yolov8:
         ###############################
         input_image = sample.data
         # input_image = cv2.imread(sample)        
-        
 
+        ### TEST ####
+        cv2.imwrite('test.jpg', input_image)
+        plugin.upload_file('test.jpg')
+        
         ############# NOT NEEDED ##############
         # for i in indices:
         #     # Get the box, score, and class ID corresponding to the index
