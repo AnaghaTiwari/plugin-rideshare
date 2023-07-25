@@ -6,7 +6,8 @@ A semi-real-time rideshare vehicle tracking application based on a group of conv
 
 Both YoloV8 models were finetuned (custom-trained) on an augmented rideshare sticker dataset. While running, Model1 takes in a steady video stream from a given bottom camera (installed at the Sage node) and attempts to detect rideshare stickers given the zoomed-out, original frame. The resulting sticker prediction is passed on to Model2, which confirms whether the prediction is actually a rideshare sticker. The graphic below provides a visual explanation of the 2-Stage process. The model detections happen in-situ, while the cropped rideshare stickers, timeframe, and count of rideshare vehicles is published to the data repo for public use.
 
-![ML Filters - Page 1](https://github.com/AnaghaTiwari/plugin-rideshare/assets/76963992/70ce0d2f-9f58-4c0e-ae25-08c76d5d4f39)
+![dest](https://github.com/AnaghaTiwari/plugin-rideshare/assets/76963992/bcc1b1dd-402b-40c4-8206-50095b426f82)
+
 
 # Inference for Sage Nodes
 
