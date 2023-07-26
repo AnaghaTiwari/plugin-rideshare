@@ -502,7 +502,8 @@ if __name__ == '__main__':
                 r = box.xyxy[0].astype(int)
                 crop = input_image[r[1]:r[3], r[0]:r[2]]
                 results2 = model2.predict(crop, conf=0.2)
-                cv2.imwrite("crop.jpeg", crop)
+                final_crop = results2[0].plot()
+                cv2.imwrite("crop.jpeg", final_crop)
                 plugin.upload_file("crop.jpeg")
 
 
