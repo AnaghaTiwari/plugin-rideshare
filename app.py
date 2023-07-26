@@ -497,7 +497,7 @@ if __name__ == '__main__':
             cv2.imwrite("result.jpeg", annotated_frame)
             plugin.upload_file("result.jpeg")
 
-            boxes = results.boxes.cpu().numpy()
+            boxes = results[0].boxes.cpu().numpy()
             for i, box in enumerate(boxes):
                 r = box.xyxy[0].astype(int)
                 crop = input_image[r[1]:r[3], r[0]:r[2]]
