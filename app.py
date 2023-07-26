@@ -495,7 +495,7 @@ if __name__ == '__main__':
 
         # Visualize the results on the frame
             cv2.imwrite("result.jpeg", annotated_frame)
-            plugin.upload_file("result.jpeg")
+            # plugin.upload_file("result.jpeg")
 
             boxes = results[0].boxes.cpu().numpy()
             for i, box in enumerate(boxes):
