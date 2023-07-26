@@ -193,9 +193,7 @@ class Yolov8:
         input_image = sample.data
         # input_image = cv2.imread(sample)        
 
-        ### TEST ####
-        cv2.imwrite('test.jpg', input_image)
-        plugin.upload_file('test.jpg')
+        
         
         ############# NOT NEEDED ##############
         # for i in indices:
@@ -450,7 +448,7 @@ if __name__ == '__main__':
     parser.add_argument('--model2', type=str, default='best_s2.pt', help='Input stage2 YoloV8 model.')
     parser.add_argument('-stream', type=str, action='store', default=str('bottom_camera'), help='ID of stream')
     parser.add_argument('--conf-thres', type=float, default=0.2, help='Confidence threshold')
-    parser.add_argument('--iou-thres', type=float, default=0.4, help='IoU threshold')
+    parser.add_argument('--iou-thres', type=float, default=0.3, help='IoU threshold')
     parser.add_argument('-continuous', dest = 'continuous', action='store_true', default=False, help='Continuous run flag T/F')
     args = parser.parse_args()
 
@@ -482,6 +480,9 @@ if __name__ == '__main__':
                 #########
                 sample = camera.snapshot()
                 # sample = 'test2.jpeg'
+
+            #cropping image into fourths, then running detection
+            
 
             # Perform object detection - return crop - stage 1
             crop = detection.main(sample, 1)
