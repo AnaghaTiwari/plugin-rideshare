@@ -512,13 +512,14 @@ if __name__ == '__main__':
                 annotated_frame = results[0].plot()
     
                 cv2.imwrite("result.jpeg", annotated_frame)
-                plugin.upload_file("result.jpeg")
+                # plugin.upload_file("result.jpeg")
     
-                # call model2
+                # call  model2
                 boxes = results[0].boxes.cpu().numpy()
                 for i, box in enumerate(boxes):
                     r = box.xyxy[0].astype(int)
                     crop = img[r[1]:r[3], r[0]:r[2]]
+                    crop = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
                     results2 = model2.predict(crop, conf=0.2)
 
                     # if detection, publish image (crop)
