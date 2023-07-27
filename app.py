@@ -504,7 +504,10 @@ if __name__ == '__main__':
 
             
             parts = [top_left, top_right, bot_left, bot_right]
+            
             count=0
+            publish_ = false
+            
             for img in parts:
                 
                 results = model1.predict(img, conf=0.4)
@@ -529,9 +532,10 @@ if __name__ == '__main__':
                         cv2.imwrite("crop.jpeg", crop)
                         plugin.upload_file("crop.jpeg")
                         count+=1
+                        publish_ = true
 
-            
-            plugin.publish("env.detection.rideshare", count, timestamp = sample.timestamp)
+            if publish_:
+                plugin.publish("env.detection.rideshare", count, timestamp = sample.timestamp)
             
 
 
