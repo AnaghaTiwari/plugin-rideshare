@@ -480,7 +480,7 @@ if __name__ == '__main__':
             with Camera(args.stream) as camera:
                 #########
                 # sample = camera.snapshot()
-                sample = 'test2.jpeg'
+                sample = 'test.jpeg'
 
             #cropping image into fourths, then running detection
             
