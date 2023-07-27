@@ -488,10 +488,10 @@ if __name__ == '__main__':
             # Perform object detection - return crop - stage 1
             model1 = YOLO('yolov8.pt')
             model2 = YOLO('best_s2.pt')
-            frame = sample.data
+            frame_ = sample.data
 
             # divide frame into fourths
-            frame_ = cv2.imread(frame)
+            # frame_ = cv2.imread(frame)
         
             (h, w) = frame_.shape[:2]
             (center_x, center_y) = (w//2, h//2)
