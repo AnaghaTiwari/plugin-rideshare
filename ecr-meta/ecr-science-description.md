@@ -4,7 +4,7 @@ A semi-real-time rideshare vehicle tracking application based on a group of conv
 
 # AI at the Edge
 
-Both YoloV8 models were finetuned (custom-trained) on an augmented rideshare sticker dataset. While running, Model1 takes in a steady video stream from a given bottom camera (installed at the Sage node) and attempts to detect rideshare stickers given the zoomed-out, original frame. The resulting sticker prediction is passed on to Model2, which confirms whether the prediction is actually a rideshare sticker. The graphic below provides a visual explanation of the 2-Stage process. The model detections happen in-situ, while the cropped rideshare stickers, timeframe, and count of rideshare vehicles is published to the data repo for public use.
+Both YoloV8 models were finetuned (custom-trained) on a rideshare sticker datasets. Specifically, Model1 was trained on an augmented dataset, while Model2 was trained using Model1's sticker predictions. While running, Model1 takes in a steady video stream from a given bottom camera (installed at the Sage node) and attempts to detect rideshare stickers given the zoomed-out, original frame. The resulting sticker prediction is passed on to Model2, which confirms whether the prediction is actually a rideshare sticker. The graphic below provides a visual explanation of the 2-Stage process. The model detections happen in-situ, while the cropped rideshare stickers, timeframe, and count of rideshare vehicles is published to the data repo for public use.
 
 ![dest](https://github.com/AnaghaTiwari/plugin-rideshare/assets/76963992/bcc1b1dd-402b-40c4-8206-50095b426f82)
 
@@ -20,7 +20,7 @@ import sage_data_client
 df = sage_data_client.query(
     start="-1h",
     filter={
-        "name": "plugin-rideshare",
+        "plugin": "registry.sagecontinuum.org/anagha/rideshare-detection:0.1.8"
     }
 )
 
