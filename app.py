@@ -479,8 +479,8 @@ if __name__ == '__main__':
             # with Camera(args.stream) as camera:
             with Camera(args.stream) as camera:
                 #########
-                sample = camera.snapshot()
-                # sample = 'test2.jpeg'
+                # sample = camera.snapshot()
+                sample = 'test2.jpeg'
 
             #cropping image into fourths, then running detection
             
@@ -488,10 +488,11 @@ if __name__ == '__main__':
             # Perform object detection - return crop - stage 1
             model1 = YOLO('yolov8.pt')
             model2 = YOLO('best_s2.pt')
-            frame_ = sample.data
+            
+            # frame_ = sample.data
 
             # divide frame into fourths
-            # frame_ = cv2.imread(sample)
+            frame_ = cv2.imread(sample)
         
             (h, w) = frame_.shape[:2]
             (center_x, center_y) = (w//2, h//2)
@@ -519,9 +520,13 @@ if __name__ == '__main__':
                     r = box.xyxy[0].astype(int)
                     crop = img[r[1]:r[3], r[0]:r[2]]
                     results2 = model2.predict(crop, conf=0.2)
-                    final_crop = results2[0].plot()
-                    cv2.imwrite("crop.jpeg", final_crop)
-                    plugin.upload_file("crop.jpeg")
+
+                    # if detection, publish image (crop)
+                    boxes2 = result2[0].boxes
+                    if len(boxes2) > 0:
+                        final_crop = results2[0].plot()
+                        cv2.imwrite("crop.jpeg", crop)
+                        plugin.upload_file("crop.jpeg")
 
 
           
