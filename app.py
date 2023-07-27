@@ -519,7 +519,7 @@ if __name__ == '__main__':
                 for i, box in enumerate(boxes):
                     r = box.xyxy[0].astype(int)
                     crop = img[r[1]:r[3], r[0]:r[2]]
-                    results2 = model2.predict(crop, conf=0.4)
+                    results2 = model2.predict(crop, conf=0.3)
 
                     # if detection, publish image (crop)
                     boxes2 = results2[0].boxes
