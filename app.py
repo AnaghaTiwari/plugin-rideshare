@@ -522,7 +522,7 @@ if __name__ == '__main__':
                     results2 = model2.predict(crop, conf=0.2)
 
                     # if detection, publish image (crop)
-                    boxes2 = result2[0].boxes
+                    boxes2 = results2[0].boxes
                     if len(boxes2) > 0:
                         final_crop = results2[0].plot()
                         cv2.imwrite("crop.jpeg", crop)
