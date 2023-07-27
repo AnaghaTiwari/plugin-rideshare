@@ -528,7 +528,6 @@ if __name__ == '__main__':
             # crop = detection.main(sample, 1)
           
 
-            # Perform object detection - return for stage 2
             # output = detection2.main(crop, 2)
             
             if not args.continuous:
