@@ -479,8 +479,8 @@ if __name__ == '__main__':
             # with Camera(args.stream) as camera:
             with Camera(args.stream) as camera:
                 #########
-                # sample = camera.snapshot()
-                sample = 'test.jpeg'
+                sample = camera.snapshot()
+                # sample = 'test.jpeg'
 
             #cropping image into fourths, then running detection
             
@@ -489,10 +489,10 @@ if __name__ == '__main__':
             model1 = YOLO('yolov8.pt')
             model2 = YOLO('best_s2.pt')
             
-            # frame_ = sample.data
+            frame_ = sample.data
 
             # divide frame into fourths
-            frame_ = cv2.imread(sample)
+            # frame_ = cv2.imread(sample)
         
             (h, w) = frame_.shape[:2]
             (center_x, center_y) = (w//2, h//2)
