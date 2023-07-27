@@ -489,22 +489,39 @@ if __name__ == '__main__':
             model1 = YOLO('yolov8.pt')
             model2 = YOLO('best_s2.pt')
             frame = sample.data
+
+            # divide frame into fourths
+            frame_ = cv2.imread(frame)
+        
+            (h, w) = frame_.shape[:2]
+            (center_x, center_y) = (w//2, h//2)
+        
+            top_left = frame_[0:center_y, 0:center_x]
+            top_right = frame_[0:center_y, center_x:w]
+            bot_left = frame_[center_y:h, 0:center_x]
+            bot_right = frame_[center_y:h, center_x:w]
+
             
-            results = model1.predict(frame, conf=0.2)
-            annotated_frame = results[0].plot()
+            parts = [top_left, top_right, bot_left, bot_right]
 
-        # Visualize the results on the frame
-            cv2.imwrite("result.jpeg", annotated_frame)
-            # plugin.upload_file("result.jpeg")
-
-            boxes = results[0].boxes.cpu().numpy()
-            for i, box in enumerate(boxes):
-                r = box.xyxy[0].astype(int)
-                crop = input_image[r[1]:r[3], r[0]:r[2]]
-                results2 = model2.predict(crop, conf=0.2)
-                final_crop = results2[0].plot()
-                cv2.imwrite("crop.jpeg", final_crop)
-                plugin.upload_file("crop.jpeg")
+            for img in parts:
+                
+                results = model1.predict(img, conf=0.2)
+                
+                annotated_frame = results[0].plot()
+    
+                cv2.imwrite("result.jpeg", annotated_frame)
+                # plugin.upload_file("result.jpeg")
+    
+                # call model2
+                boxes = results[0].boxes.cpu().numpy()
+                for i, box in enumerate(boxes):
+                    r = box.xyxy[0].astype(int)
+                    crop = img[r[1]:r[3], r[0]:r[2]]
+                    results2 = model2.predict(crop, conf=0.2)
+                    final_crop = results2[0].plot()
+                    cv2.imwrite("crop.jpeg", final_crop)
+                    plugin.upload_file("crop.jpeg")
 
 
           
