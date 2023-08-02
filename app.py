@@ -506,7 +506,7 @@ if __name__ == '__main__':
             parts = [top_left, top_right, bot_left, bot_right]
             
             count=0
-            publish_ = false
+            publish_ = False
             
             for img in parts:
                 
@@ -532,7 +532,7 @@ if __name__ == '__main__':
                         cv2.imwrite("crop.jpeg", crop)
                         plugin.upload_file("crop.jpeg")
                         count+=1
-                        publish_ = true
+                        publish_ = True
 
             if publish_:
                 plugin.publish("env.detection.rideshare", count, timestamp = sample.timestamp)
