@@ -510,7 +510,7 @@ if __name__ == '__main__':
             
             for img in parts:
                 
-                results = model1.predict(img, conf=0.4)
+                results = model1.predict(img, conf=0.5)
                 
                 annotated_frame = results[0].plot()
     
@@ -523,7 +523,7 @@ if __name__ == '__main__':
                     r = box.xyxy[0].astype(int)
                     crop = img[r[1]:r[3], r[0]:r[2]]
                     crop = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
-                    results2 = model2.predict(crop, conf=0.4)
+                    results2 = model2.predict(crop, conf=0.5)
 
                     # if detection, publish image (crop)
                     boxes2 = results2[0].boxes
